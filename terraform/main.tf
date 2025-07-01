@@ -27,8 +27,8 @@ resource "aws_db_subnet_group" "aurora_subnet" {
   subnet_ids = var.subnet_ids
 }
 
-resource "aws_security_group" "aurora_sg" {
-  name        = "aurora-sg"
+rresource "aws_security_group" "aurora_sg" {
+  name        = "aurora-sg-${var.cluster_id}"
   description = "Allow MySQL access"
   vpc_id      = var.vpc_id
 
