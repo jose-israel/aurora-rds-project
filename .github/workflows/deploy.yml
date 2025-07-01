@@ -1,0 +1,36 @@
+name: Deploy Aurora RDS with Terraform
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: us-east-1 
+
+    steps:
+      - name: 🧾 Clonar repositorio
+        uses: actions/checkout@v2
+
+      - name: ⚙️ Instalar Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.5
+
+      - name: 🚀 Terraform Init
+        run: terraform init
+        working-directory: terraform/
+
+      - name: 📋 Terraform Plan
+        run: terraform plan
+        working-directory: terraform/
+
+      - name: ✅ Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: terraform/
