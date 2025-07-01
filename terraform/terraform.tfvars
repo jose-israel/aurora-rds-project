@@ -1,6 +1,6 @@
 subnet_ids = [
-  "subnet-0d146e256d71d594e",
-  "subnet-0d24828464cfe86c9"
+  "subnet-0d146e256d71d594e",  # us-east-1b
+  "subnet-02d428844c5fec869"   # us-east-1e
 ]
 
 vpc_id        = "vpc-01641fbf152a3d641"
