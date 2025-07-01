@@ -1,4 +1,8 @@
-# Comentario para disparar workflow nuevamente
+provider "aws" {
+  region     = var.region
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
+}
 
 resource "aws_rds_cluster" "aurora_cluster" {
   cluster_identifier      = var.cluster_id
@@ -34,7 +38,7 @@ resource "aws_security_group" "aurora_sg" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Cámbialo luego a tu IP o rango privado
+    cidr_blocks = ["0.0.0.0/0"] 
   }
 
   egress {
