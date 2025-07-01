@@ -15,22 +15,30 @@ jobs:
       AWS_REGION: us-east-1 
 
     steps:
-      - name: 🧾 Clonar repositorio
+      - name: Clonar repositorio
         uses: actions/checkout@v2
 
-      - name: ⚙️ Instalar Terraform
+      - name: Instalar Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.5.5
 
-      - name: 🚀 Terraform Init
+      - name: Terraform Init
         run: terraform init
         working-directory: terraform/
 
-      - name: 📋 Terraform Plan
+      - name: Terraform Plan
         run: terraform plan
         working-directory: terraform/
 
-      - name: ✅ Terraform Apply
+      - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: terraform/
+        
+      - name: Terraform Plan
+        run: |
+          export TF_LOG=DEBUG
+          terraform plan -out=tfplan
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        timeout-minutes: 5

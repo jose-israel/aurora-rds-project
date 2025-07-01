@@ -8,7 +8,9 @@ variable "db_username" {
   default = "admin"
 }
 variable "db_password" {
-  default = "grupo2"
+  description = "Contraseña del RDS"
+  type        = string
+  sensitive   = true
 }
 variable "db_name" {
   default = "base-de-datos-g2"
